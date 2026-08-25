@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sunrise Tuition Centre Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-a"></div>
+    <div class="bg-shape bg-shape-b"></div>
+
+    <main class="shell">
+      <header class="topbar card">
+        <div>
+          <p class="eyebrow">Sunrise Tuition Centre</p>
+          <h1>Class Teacher Student Manager</h1>
+        </div>
+        <div class="api-field">
+          <label for="apiBaseUrl">API base URL</label>
+          <input id="apiBaseUrl" type="url" placeholder="https://your-service.onrender.com" />
+          <button id="saveApiBtn" class="btn btn-ghost">Save URL</button>
+        </div>
+      </header>
+
+      <section class="grid metrics">
+        <article class="metric card">
+          <p>Classes</p>
+          <h2 id="countClasses">0</h2>
+        </article>
+        <article class="metric card">
+          <p>Teachers</p>
+          <h2 id="countTeachers">0</h2>
+        </article>
+        <article class="metric card">
+          <p>Students</p>
+          <h2 id="countStudents">0</h2>
+        </article>
+      </section>
+
+      <section class="status card" id="statusBox" aria-live="polite"></section>
+
+      <nav class="tabs card">
+        <button data-tab="classes" class="tab active">Classes</button>
+        <button data-tab="teachers" class="tab">Teachers</button>
+        <button data-tab="students" class="tab">Students</button>
+      </nav>
+
+      <section id="panel-classes" class="panel active">
+        <div class="panel-layout">
+          <article class="card">
+            <div class="panel-title-row">
+              <h3>Class list</h3>
+              <input id="classSearch" type="search" placeholder="Search class code or name" />
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Teacher</th>
+                    <th>Students</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="classRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 id="classFormTitle">Create class</h3>
+            <form id="classForm">
+              <input type="hidden" id="classId" />
+              <label>Class code<input id="classCode" required /></label>
+              <label>Class name<input id="className" required /></label>
+              <label>Subjects<input id="classSubjects" /></label>
+              <label>Schedule days<input id="classDays" placeholder="Mon, Wed" /></label>
+              <label>Schedule time<input id="classTime" placeholder="15:00-17:00" /></label>
+              <label>Room<input id="classRoom" /></label>
+              <label>Status
+                <select id="classStatus">
+                  <option>Active</option>
+                  <option>Inactive</option>
+                </select>
+              </label>
+              <div class="button-row">
+                <button type="submit" class="btn">Save</button>
+                <button type="button" id="classReset" class="btn btn-ghost">Reset</button>
+              </div>
+            </form>
+          </article>
+        </div>
+
+        <article class="card detail" id="classDetail">
+          <h3>Class detail</h3>
+          <p>Select a class to see teacher and students.</p>
+        </article>
+      </section>
+
+      <section id="panel-teachers" class="panel">
+        <div class="panel-layout">
+          <article class="card">
+            <div class="panel-title-row">
+              <h3>Teacher list</h3>
+              <input id="teacherSearch" type="search" placeholder="Search code or name" />
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Class</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="teacherRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 id="teacherFormTitle">Create teacher</h3>
+            <form id="teacherForm">
+              <input type="hidden" id="teacherId" />
+              <label>Teacher code<input id="teacherCode" required /></label>
+              <label>Full name<input id="teacherName" required /></label>
+              <label>Email<input id="teacherEmail" type="email" required /></label>
+              <label>Phone<input id="teacherPhone" /></label>
+              <label>Subject specialty<input id="teacherSpecialty" /></label>
+              <label>Assigned class
+                <select id="teacherClassId">
+                  <option value="">Unassigned</option>
+                </select>
+              </label>
+              <label>Join date<input id="teacherJoinDate" type="date" /></label>
+              <label>Status
+                <select id="teacherStatus">
+                  <option>Active</option>
+                  <option>On Leave</option>
+                  <option>Inactive</option>
+                </select>
+              </label>
+              <div class="button-row">
+                <button type="submit" class="btn">Save</button>
+                <button type="button" id="teacherReset" class="btn btn-ghost">Reset</button>
+              </div>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section id="panel-students" class="panel">
+        <div class="panel-layout">
+          <article class="card">
+            <div class="panel-title-row panel-title-stack">
+              <h3>Student list</h3>
+              <div class="filters">
+                <input id="studentSearch" type="search" placeholder="Search code or name" />
+                <select id="studentClassFilter">
+                  <option value="">All classes</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Guardian</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="studentRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 id="studentFormTitle">Create student</h3>
+            <form id="studentForm">
+              <input type="hidden" id="studentId" />
+              <label>Class
+                <select id="studentClassId" required></select>
+              </label>
+              <label>Student code<input id="studentCode" required /></label>
+              <label>Full name<input id="studentName" required /></label>
+              <label>Gender
+                <select id="studentGender">
+                  <option value="">-</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </label>
+              <label>Age<input id="studentAge" type="number" min="5" max="18" /></label>
+              <label>Guardian name<input id="guardianName" /></label>
+              <label>Guardian phone<input id="guardianPhone" /></label>
+              <label>Guardian email<input id="guardianEmail" type="email" /></label>
+              <label>Enrolment date<input id="enrolmentDate" type="date" /></label>
+              <label>Status
+                <select id="studentStatus">
+                  <option>Active</option>
+                  <option>Withdrawn</option>
+                </select>
+              </label>
+              <div class="button-row">
+                <button type="submit" class="btn">Save</button>
+                <button type="button" id="studentReset" class="btn btn-ghost">Reset</button>
+              </div>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

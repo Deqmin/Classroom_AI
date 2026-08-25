@@ -1,0 +1,20 @@
+{
+  "name": "sunrise-tuition-api",
+  "version": "1.0.0",
+  "description": "REST API for Sunrise Tuition Centre",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js",
+    "db:test": "node ../prep/db-test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}

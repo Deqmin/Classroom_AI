@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend API Check</title>
+  </head>
+  <body>
+    <h1>API Check</h1>
+    <p id="out">Loading...</p>
+
+    <script>
+      const API_BASE_URL = "https://replace-with-your-render-url.onrender.com";
+
+      fetch(`${API_BASE_URL}/api/health`)
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("out").textContent = JSON.stringify(data);
+        })
+        .catch((error) => {
+          document.getElementById("out").textContent = error.message;
+        });
+    </script>
+  </body>
+</html>
