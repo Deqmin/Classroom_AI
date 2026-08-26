@@ -32,19 +32,25 @@
         </div>
       </header>
 
-      <section class="grid metrics">
+      <section class="dashboard" aria-labelledby="dashboardTitle">
+        <div class="dashboard-heading">
+          <p class="eyebrow">Overview</p>
+          <h2 id="dashboardTitle">Dashboard</h2>
+        </div>
+        <div class="grid metrics">
         <article class="metric card">
-          <p>Classes</p>
+          <p>Total classes</p>
           <h2 id="countClasses">0</h2>
         </article>
         <article class="metric card">
-          <p>Teachers</p>
+          <p>Total teachers</p>
           <h2 id="countTeachers">0</h2>
         </article>
         <article class="metric card">
-          <p>Students</p>
+          <p>Total students</p>
           <h2 id="countStudents">0</h2>
         </article>
+        </div>
       </section>
 
       <section class="status card" id="statusBox" aria-live="polite"></section>

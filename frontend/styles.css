@@ -130,6 +130,18 @@ h3 {
   gap: 0.9rem;
 }
 
+.dashboard-heading {
+  margin-bottom: 0.65rem;
+}
+
+.dashboard-heading .eyebrow {
+  margin-bottom: 0.15rem;
+}
+
+.dashboard-heading h2 {
+  font-size: 1.35rem;
+}
+
 .metric p {
   margin: 0;
   color: var(--ink-soft);
