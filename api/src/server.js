@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const { randomUUID } = require("node:crypto");
 const express = require("express");
 const cors = require("cors");
 const { pool } = require("./db");
@@ -119,10 +120,11 @@ app.post("/api/classes", async (req, res) => {
   try {
     const result = await pool.query(
       `INSERT INTO classes
-      (class_code, class_name, subjects, schedule_days, schedule_time, room, teacher_id, status)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+      (class_id, class_code, class_name, subjects, schedule_days, schedule_time, room, teacher_id, status)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
       RETURNING *`,
       [
+        randomUUID(),
         req.body.class_code,
         req.body.class_name,
         req.body.subjects || null,
@@ -237,10 +239,11 @@ app.post("/api/teachers", async (req, res) => {
       await client.query("BEGIN");
       const insertResult = await client.query(
         `INSERT INTO teachers
-        (teacher_code, full_name, email, phone, subject_specialty, class_id, join_date, status)
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+        (teacher_id, teacher_code, full_name, email, phone, subject_specialty, class_id, join_date, status)
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
         RETURNING *`,
         [
+          randomUUID(),
           req.body.teacher_code,
           req.body.full_name,
           req.body.email,
@@ -428,10 +431,11 @@ app.post("/api/students", async (req, res) => {
   try {
     const result = await pool.query(
       `INSERT INTO students
-      (student_code, full_name, gender, age, class_id, guardian_name, guardian_phone, guardian_email, enrolment_date, status)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
+      (student_id, student_code, full_name, gender, age, class_id, guardian_name, guardian_phone, guardian_email, enrolment_date, status)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
       RETURNING *`,
       [
+        randomUUID(),
         req.body.student_code,
         req.body.full_name,
         req.body.gender || null,
