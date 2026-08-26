@@ -1,6 +1,6 @@
-const productionApi = "https://sunrise-tuition-api.onrender.com";
+const productionApi = "https://classroom-ai-8nl0.onrender.com";
 const storedApi = localStorage.getItem("apiBaseUrl");
-const savedApi = storedApi && !storedApi.includes("localhost") && !storedApi.includes("sunrise-tuition-centre-api")
+const savedApi = storedApi && !storedApi.includes("localhost") && !storedApi.includes("sunrise-tuition-centre-api") && !storedApi.includes("sunrise-tuition-api.onrender.com")
   ? storedApi
   : productionApi;
 let apiBaseUrl = savedApi;
