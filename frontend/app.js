@@ -1,4 +1,6 @@
-const savedApi = localStorage.getItem("apiBaseUrl") || "http://localhost:3000";
+const productionApi = "https://sunrise-tuition-centre-api.onrender.com";
+const storedApi = localStorage.getItem("apiBaseUrl");
+const savedApi = storedApi && !storedApi.includes("localhost") ? storedApi : productionApi;
 let apiBaseUrl = savedApi;
 
 const state = {
