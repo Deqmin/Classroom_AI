@@ -89,6 +89,46 @@ h3 {
   align-items: center;
 }
 
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.tuition-logo {
+  width: 3.4rem;
+  height: 3.4rem;
+  flex: 0 0 auto;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: var(--teal);
+  box-shadow: inset 0 -0.35rem 0 rgba(0, 44, 55, 0.22), 0 0.4rem 1rem rgba(0, 95, 115, 0.2);
+}
+
+.logo-sun {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  right: -0.25rem;
+  top: -0.3rem;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.logo-letter {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.45rem;
+  color: #fff9f1;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
 .eyebrow {
   margin: 0 0 0.35rem;
   text-transform: uppercase;
@@ -286,6 +326,11 @@ label {
   .topbar {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .tuition-logo {
+    width: 3rem;
+    height: 3rem;
   }
 
   .grid.metrics {
