@@ -6,10 +6,19 @@ const { pool } = require("./db");
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
+function normalizeOrigin(value) {
+  try {
+    return new URL(value).origin;
+  } catch {
+    return value;
+  }
+}
+
 const allowedOrigins = (process.env.CORS_ORIGIN || "")
   .split(",")
   .map((origin) => origin.trim())
-  .filter(Boolean);
+  .filter(Boolean)
+  .map(normalizeOrigin);
 
 app.use(
   cors({
